@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification of Beneath the Wave Images</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { color: #0066cc; }
+        .prediction-area { margin-top: 20px; }
+        #preview { max-width: 300px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>we can predict here</h2>
+    <h1>Classification of Beneath the Wave Images</h1>
+    <div class="prediction-area">
+        <input type="file" id="fileInput" accept="image/*">
+        <br><br>
+        <img id="preview" src="" alt="Image preview">
+        <br><br>
+        <button onclick="predict()">Predict</button>
+    </div>
+
+    <script>
+        function predict() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Redirect to output.html with the prediction result
+                window.location.href = `output?prediction=${data.prediction}`;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        document.getElementById('fileInput').onchange = function (event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const preview = document.getElementById('preview');
+                preview.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+    </script>
+</body>
+</html>

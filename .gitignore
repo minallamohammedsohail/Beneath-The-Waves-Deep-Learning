@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+*.ipynb_checkpoints/
+
+# Model weights
+*.h5
+
+# Datasets and large files
+*.csv
+5. Project Executable Files/Flask/static/uploads/
+2. Data Collection and Preprocessing Phase/
+3. Model Development Phase/
+5. Project Executable Files/Traing and Testing/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PDF and documentation (optional, remove if you want to keep docs public)
+*.pdf
+
+# Shortcuts
+*.lnk 
